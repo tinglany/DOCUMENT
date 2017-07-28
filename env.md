@@ -1,5 +1,5 @@
 
-# Install EOS in mate 
+# Install EOS in mate （standalone mode）
 
 ### 1、 install cmake 
 ### 2、install boost
@@ -9,7 +9,7 @@ sudo apt-get install libicu-dev　　　　　#支持正则表达式的UNICODE�
 sudo apt-get install python-dev　　　　　#需要python的话  
 sudo apt-get install libbz2-dev　　　　#如果编译出现错误：bzlib.h: No such file or directory
 ```
-注意，复制粘贴的时候，不要复制命令后面的空格，这样会导致一个无法定位软件包的错误.
+注意,复制的命令后面不要有空格，这样会导致一个无法定位软件包的错误.
 
 安装失败统一的办法：
 ```sh
@@ -48,3 +48,17 @@ g++ test.cpp -o test
 ```
 
 注 : boost的安装时间还是很长的，单核的虚拟机上面 30 min 左右
+
+### 3 isntall OpenSSL
+```sh
+sudo apt-get isntall openssl
+```
+### 4 install secp256k1-zkp
+```sh
+1.  git	clone https://github.com/cryptonomex/secp256k1-zkp.git	
+2.  cd secp256k1-zkp	
+3.  ./autogen.sh	
+4.  ./configure	
+5.  make	
+6.  sudo make install
+```
