@@ -62,3 +62,23 @@ sudo apt-get isntall openssl
 5.  make	
 6.  sudo make install
 ```
+### install LLVM
+```sh
+brew install llvm	
+```
+编译 WASM 编译环境:
+```
+```sh
+1.  mkdir ~/wasm-compiler
+2.  cd ~/wasm-compiler
+3.  git clone --depth 1 --single-branch --branch release_40 https://github.com/llvm-mirror/llvm.git
+4.  cd llvm/tools
+5.  git clone --depth 1 --single-branch --branch release_40 https://github.com/llvm-mirror/clang.git
+6.  cd ..
+7.  mkdir build	
+8.  cd build	
+9.  cmake -G "Unix Makefiles" -DCMAKE_INSTALL_PREFIX=.. -DLLVM_TARGETS_TO_BUILD= -DLLVM_EXPERIMENTAL_TARGETS_TO_BUILD=WebAssembly -DCMAKE_BUILD_TYPE=Release ../	
+10. make -j4 install
+```
+prepare work end.
+
