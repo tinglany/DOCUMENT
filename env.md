@@ -1,7 +1,17 @@
 
 # Install EOS in mate （standalone mode）
 
-### 1、 install cmake 
+### 1、 升级cmake
+(如mate自带cmake3.5低版本编译EOS时会报错)
+从cmake官网下载source distributions
+然后解压安装：
+```sh
+# tar -zxvf cmake-3.8.2.tar.gz
+# ./bootstrap
+# make
+# make isntall
+# cmake -version
+```
 ### 2、install boost
 ```sh
 sudo apt-get install mpi-default-dev　　#安装mpi库  
@@ -15,8 +25,8 @@ sudo apt-get install libbz2-dev　　　　#如果编译出现错误：bzlib.h: 
 ```sh
 sudo apt-get update
 ```
-下载boost
-http://sourceforge.net/projects/boost/files/latest/download?source=dlp
+下载boost（注意版本1.64+）
+http://www.boost.org/users/download/
 
 下载好了以后，解压 .bz2 文件：
 ```sh
@@ -49,11 +59,11 @@ g++ test.cpp -o test
 
 注 : boost的安装时间还是很长的，单核的虚拟机上面 30 min 左右
 
-### 3 isntall OpenSSL
+### 3、isntall OpenSSL
 ```sh
 sudo apt-get isntall openssl
 ```
-### 4 install secp256k1-zkp
+### 4、install secp256k1-zkp
 ```sh
 1.  git	clone https://github.com/cryptonomex/secp256k1-zkp.git	
 2.  cd secp256k1-zkp	
@@ -62,11 +72,11 @@ sudo apt-get isntall openssl
 5.  make	
 6.  sudo make install
 ```
-### install LLVM
+###5、install LLVM（版本4.0+）
 ```sh
-brew install llvm	
+apt-get install llvm4.0	
 ```
-编译 WASM 编译环境:
+### 6、编译 WASM 编译环境:
 ```
 ```sh
 1.  mkdir ~/wasm-compiler
@@ -81,16 +91,20 @@ brew install llvm
 10. make -j4 install
 ```
 prepare work end.
-### 升级cmake
-(如mate自带cmake3.5低版本编译EOS时会报错)
-从cmake官网下载source distributions
-然后解压安装：
+（cmake3.8+、boost1.64+、llvm4.0+版本不对要任命要人命）
+### 7、编译EOS代码
 ```sh
-# tar -zxvf cmake-3.8.2.tar.gz
-# ./bootstrap
-# make
-# make isntall
-# cmake -version
+1. cd eos
+2. mkdir build && cd build
+3. export WASM_LLVM_CONFIG=~/wasm-compiler/llvm/bin/llvm-config
+4. cmake ..
+5. cd .. 
+6. make -j4
 ```
+其中~/wasm-compiler/llvm/bin/llvm-config 为之前编译的 WASM 编译器地址。开发者可以将 WASM_LLVM_CONFIG=~/wasm-compiler/llvm/bin/llvm-config 添加到.bash_profile 中去。
+
+### 运行EOS
+在 eos/programs 文件加下,eosd 是单机版的 EOS 节点,会模拟多个账号轮流出块。eosc 通过 REST 访问 eosd,并提供命令行工具。
+
 
 
