@@ -91,7 +91,7 @@ apt-get install llvm4.0
 10. make -j4 install
 ```
 prepare work end.
-（cmake3.8+、boost1.64+、llvm4.0+版本不对要任命要人命）
+（cmake3.8+、boost1.64+、llvm4.0+版本不对要人命）
 ### 7、编译EOS代码
 ```sh
 1. cd eos
