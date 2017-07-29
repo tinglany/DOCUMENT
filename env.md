@@ -81,4 +81,16 @@ brew install llvm
 10. make -j4 install
 ```
 prepare work end.
+### 升级cmake
+(如mate自带cmake3.5低版本编译EOS时会报错)
+从cmake官网下载source distributions
+然后解压安装：
+```sh
+# tar -zxvf cmake-3.8.2.tar.gz
+# ./bootstrap
+# make
+# make isntall
+# cmake -version
+```
+
 
